@@ -22,6 +22,7 @@ namespace mystd
 
         size_t Size() const;
         size_t Capacity() const;
+        void Clear();
 
         T& operator[](size_t idx);
         const T& operator[](size_t idx) const;
@@ -44,28 +45,37 @@ namespace mystd
         friend bool operator!=(const Vector<T>& first, const Vector<T>& second);
     private:
         void Reallocate();
+        void DefaultAllocate();
+        void DeleteAll();
     };
 
     template<typename T>
-    Vector<T>::Vector() : capacity(2), size(0) { data = new T[2]; }
+    Vector<T>::Vector() { DefaultAllocate(); }
     
     template<typename T>
     Vector<T>::Vector(size_t capacity) : capacity(capacity), size(0) { data = new T[capacity]; }
     
     template<typename T>
-    Vector<T>::~Vector() { delete[] data; }
+    Vector<T>::~Vector() { Clear(); }
 
     template<typename T>
     void Vector<T>::PushBack(const T& value)
     {
-        if (capacity == size) Reallocate();
+        if (capacity == size)
+        {
+            Reallocate();
+        }
         data[size++] = value;
     }
 
     template<typename T>
     void Vector<T>::PushBack(T&& value)
     {
-        if (capacity == size) Reallocate();
+        if (capacity == size) 
+        {
+            Reallocate(); 
+        }
+        
         data[size++] = std::move(value);
     }
 
@@ -74,6 +84,13 @@ namespace mystd
 
     template<typename T>
     size_t Vector<T>::Capacity() const { return capacity; }
+
+    template<typename T>
+    void Vector<T>::Clear() 
+    { 
+        DeleteAll();
+        DefaultAllocate();
+    }
 
     template<typename T>
     T& Vector<T>::operator[](size_t idx) { return data[idx]; }
@@ -102,7 +119,13 @@ namespace mystd
     template<typename T>
     std::ostream& operator<<(std::ostream& out, const Vector<T>& v)
     {
-        if (v.size > 0) for (size_t i = 0; i < v.size; i++) out << v.data[i] << " ";
+        if (v.size > 0)
+        {
+            for (size_t i = 0; i < v.size; i++) 
+            {
+                out << v.data[i] << " ";
+            }
+        }
         return out;
     }
 
@@ -137,10 +160,33 @@ namespace mystd
     template<typename T>
     void Vector<T>::Reallocate()
     {
-        capacity = (int)((float)capacity * 1.7f);
-        T* tempData = new T[capacity];
-        for (size_t i = 0; i < size; i++) tempData[i] = std::move(data[i]);
+        size_t newCapacity = (int)((float)capacity * 1.7f);
+        T* newData = new T[newCapacity];
+
+        for (size_t i = 0; i < size; i++)
+        {
+            newData[i] = std::move(data[i]);
+        }
+
+
         delete[] data;
-        data = tempData;
+        data = newData;
+        capacity = newCapacity;
+    }
+
+    template<typename T>
+    void Vector<T>::DefaultAllocate()
+    {
+        capacity = 2;
+        size = 0;
+        data = new T[2];
+    }
+
+    template<typename T>
+    void Vector<T>::DeleteAll()
+    {
+        delete[] data;
+        size = 0;
+        capacity = 0;
     }
 }

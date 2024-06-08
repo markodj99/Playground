@@ -137,7 +137,10 @@ void TestVector()
 
 	cout << "--------------VECTOR--------------" << endl;
 	Vector<int> v1;
-	for (size_t i = 0; i < 10; i++) v1.PushBack((int)i + 1);
+	for (size_t i = 0; i < 10; i++)
+	{
+		v1.PushBack((int)i + 1);
+	}
 	int& ref1 = v1[0];
 	ref1 = -99;
 	int& ref2 = v1.Last();
@@ -153,8 +156,10 @@ void TestVector()
 	ref3 = 5;
 
 	Vector<int> v2;
-	for (size_t i = 0; i < 10; i++) v2.PushBack((int)i + 1);
-
+	for (size_t i = 0; i < 10; i++)
+	{
+		v2.PushBack((int)i + 1);
+	}
 	cout << (v1 == v2 ? "SAME" : "NOT SAME") << endl;
 	cout << v1 << endl << v2 << endl;
 	int& ref4 = v2.First();
@@ -164,7 +169,10 @@ void TestVector()
 	cout << v1 << endl << v2 << endl;
 
 	Vector<String> v3;
-	for (size_t i = 0; i < v1.Size(); i++) v3.PushBack("Array!");
+	for (size_t i = 0; i < v1.Size(); i++)
+	{
+		v3.PushBack("Array!");
+	}
 	cout << v3 << endl;
 	v3[4] = "Hello World!";
 	cout << v3 << endl;
@@ -174,9 +182,17 @@ void TestVector()
 	{
 		Vector<String> v4(10);
 		for (size_t i = 0; i < 15; i++)
+		{
 			v4.PushBack("Some Text");
+		}
 		cout << v4 << endl;
 	}
+
+	cout << v3 << endl;
+	v3.Clear();
+	v3.PushBack("Marko Car");
+	v3.PushBack("Najveci");
+	cout << v3 << endl;
 
 	cout << "----------------------------------" << endl;
 }

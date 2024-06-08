@@ -1,6 +1,6 @@
 #include "windows.h"
-#define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
+#define _CRTDBG_MAP_ALLOC
 
 #include "MyTesting.h"
 
@@ -25,5 +25,6 @@ int main()
 		OutputDebugString(L"-----------_CrtDumpMemoryLeaks ---------");
 		_CrtDumpMemoryLeaks();
 	}
+
 	return 0;
 }
