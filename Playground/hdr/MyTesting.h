@@ -88,7 +88,10 @@ void TestArray()
 
 	cout << "--------------ARRAY!--------------" << endl;
 	Array<int, 10> a1;
-	for (size_t i = 0; i < a1.Size(); i++) a1[i] = (int)i + 1;
+	for (size_t i = 0; i < a1.Size(); i++)
+	{
+		a1[i] = (int)i + 1;
+	}
 	int& ref1 = a1[0];
 	ref1 = -99;
 	int& ref2 = a1.Last();
@@ -104,8 +107,10 @@ void TestArray()
 	ref3 = 5;
 
 	Array<int, 10> a2;
-	for (size_t i = 0; i < a1.Size(); i++) a2[i] = (int)i + 1;
-
+	for (size_t i = 0; i < a1.Size(); i++)
+	{
+		a2[i] = (int)i + 1;
+	}
 	cout << (a1 == a2 ? "SAME" : "NOT SAME") << endl;
 	cout << a1 << endl << a2 << endl;
 	int& ref4 = a2.First();
@@ -115,7 +120,10 @@ void TestArray()
 	cout << a1 << endl << a2 << endl;
 
 	Array<String, 10> a3;
-	for (size_t i = 0; i < a1.Size(); i++) a3[i] = "Array!";
+	for (size_t i = 0; i < a1.Size(); i++)
+	{
+		a3[i] = "Array!";
+	}
 	cout << a3 << endl;
 	a3[4] = "Hello World!";
 	cout << a3 << endl;
