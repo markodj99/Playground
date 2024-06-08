@@ -122,5 +122,4 @@ namespace mystd
 
 	template<typename T, size_t SIZE>
 	constexpr size_t Array<T, SIZE>::Size() const { return SIZE; }
-
 }
