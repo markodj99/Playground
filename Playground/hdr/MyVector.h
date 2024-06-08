@@ -168,7 +168,6 @@ namespace mystd
             newData[i] = std::move(data[i]);
         }
 
-
         delete[] data;
         data = newData;
         capacity = newCapacity;
