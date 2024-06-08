@@ -41,7 +41,10 @@ namespace mystd
 	template<typename T, size_t SIZE>
 	Array<T, SIZE>::Array(const Array<T, SIZE>& other)
 	{
-		for (size_t i = 0; i < SIZE; i++) data[i]= other.data[i];
+		for (size_t i = 0; i < SIZE; i++)
+		{
+			data[i] = other.data[i];
+		}
 	}
 
 	template<typename T, size_t SIZE>
@@ -71,7 +74,13 @@ namespace mystd
 	template<typename T, size_t SIZE>
 	std::ostream& operator<<(std::ostream& out, const Array<T, SIZE>& a)
 	{
-		if (SIZE > 0) for (size_t i = 0; i < SIZE; i++) out << a.data[i] << " ";
+		if (SIZE > 0)
+		{
+			for (size_t i = 0; i < SIZE; i++)
+			{
+				out << a.data[i] << " ";
+			}
+		}
 		return out;
 	}
 
@@ -104,8 +113,10 @@ namespace mystd
 	template<typename T, size_t SIZE>
 	Array<T, SIZE>& Array<T, SIZE>::operator=(const Array<T, SIZE>& other)
 	{
-		for (size_t i = 0; i < SIZE; i++) data[i] = other.data[i];
-
+		for (size_t i = 0; i < SIZE; i++)
+		{
+			data[i] = other.data[i];
+		}
 		return *this;
 	}
 
