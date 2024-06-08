@@ -50,13 +50,13 @@ namespace mystd
     };
 
     template<typename T>
-    Vector<T>::Vector() { DefaultAllocate(); }
+    Vector<T>::Vector() : size(0), capacity(2) { data = new T[2]; }
     
     template<typename T>
     Vector<T>::Vector(size_t capacity) : capacity(capacity), size(0) { data = new T[capacity]; }
     
     template<typename T>
-    Vector<T>::~Vector() { Clear(); }
+    Vector<T>::~Vector() { DeleteAll(); }
 
     template<typename T>
     void Vector<T>::PushBack(const T& value)
