@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hdr\MyArray.h" />
+    <ClInclude Include="hdr\MyList.h" />
     <ClInclude Include="hdr\MyString.h" />
     <ClInclude Include="hdr\MyVector.h" />
     <ClInclude Include="hdr\MyTesting.h" />

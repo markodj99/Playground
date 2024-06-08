@@ -26,14 +26,23 @@ void TestString()
 
 	d[0] = 'z';
 	d[3] = 'z';
-	for (size_t i = 0; i < d.Size(); i++) cout << d[i];
+	for (size_t i = 0; i < d.Size(); i++)
+	{
+		cout << d[i];
+	}
 	cout << endl;
 
 	const auto& ref = d;
 	cout << "FIRST: " << ref.First() << "----" << "LAST: " << ref.Last() << endl;
-	for (size_t i = 0; i < ref.Size(); i++) cout << ref[i];
+	for (size_t i = 0; i < ref.Size(); i++)
+	{
+		cout << ref[i];
+	}
 	cout << endl;
-	for (size_t i = 0; i < ref.Size(); i++) cout << ref.At(i);
+	for (size_t i = 0; i < ref.Size(); i++)
+	{
+		cout << ref.At(i);
+	}
 	cout << endl;
 
 	a = nullptr;

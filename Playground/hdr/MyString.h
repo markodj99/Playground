@@ -46,10 +46,16 @@ namespace mystd
 		if (other)
 		{
 			size = 0;
-			while (other[size] != '\0') size++;
+			while (other[size] != '\0')
+			{
+				size++;
+			}
 			data = new char[size + 1];
 
-			for (size_t i = 0; i < size; i++) data[i] = other[i];
+			for (size_t i = 0; i < size; i++)
+			{
+				data[i] = other[i];
+			}
 			data[size] = '\0';
 		}
 		else
@@ -61,7 +67,10 @@ namespace mystd
 
 	String::String(const String& other): size(other.size), data(new char[other.size + 1])
 	{
-		for (size_t i = 0; i < size; i++) data[i] = other.data[i];
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] = other.data[i];
+		}
 		data[size] = '\0';
 	}
 
@@ -86,7 +95,10 @@ namespace mystd
 
 	std::ostream& operator<<(std::ostream& out, const String& s)
 	{
-		if (s.size > 0) out << s.data;
+		if (s.size > 0)
+		{
+			out << s.data;
+		}
 		return out;
 	}
 
@@ -97,13 +109,22 @@ namespace mystd
 
 		if (buffer)
 		{
-			if (v.data) delete[] v.data;
+			if (v.data)
+			{
+				delete[] v.data;
+			}
 
 			v.size = 0;
-			while (buffer[v.size] != '\0') v.size++;
+			while (buffer[v.size] != '\0')
+			{
+				v.size++;
+			}
 			v.data = new char[v.size + 1];
 
-			for (size_t i = 0; i < v.size; i++) v.data[i] = buffer[i];
+			for (size_t i = 0; i < v.size; i++)
+			{
+				v.data[i] = buffer[i];
+			}
 			v.data[v.size] = '\0';
 		}
 		else
@@ -133,13 +154,22 @@ namespace mystd
 	String& String::operator=(const char* s)
 	{
 		if (!s) return *this;
-		if (data) delete[] data;
+		if (data)
+		{
+			delete[] data;
+		}
 
 		size = 0;
-		while (s[size] != '\0') size++;
+		while (s[size] != '\0')
+		{
+			size++;
+		}
 		data = new char[size + 1];
 
-		for (size_t i = 0; i < size; i++) data[i] = s[i];
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] = s[i];
+		}
 		data[size] = '\0';
 
 		return *this;
@@ -148,12 +178,18 @@ namespace mystd
 	String& String::operator=(const String& s)
 	{
 		if (this == &s) return *this;
-		if (data) delete[] data;
+		if (data)
+		{
+			delete[] data;
+		}
 
 		size = s.size;
 		data = new char[size + 1];
 
-		for (size_t i = 0; i < size; i++) data[i] = s.data[i];
+		for (size_t i = 0; i < size; i++)
+		{
+			data[i] = s.data[i];
+		}
 		data[size] = '\0';
 
 		return *this;
@@ -162,7 +198,10 @@ namespace mystd
 	String& String::operator=(String&& s) noexcept
 	{
 		if (this == &s) return *this;
-		if (data) delete[] data;
+		if (data)
+		{
+			delete[] data;
+		}
 
 		size = s.size;
 		data = s.data;

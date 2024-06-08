@@ -32,5 +32,8 @@
     <ClInclude Include="hdr\MyTesting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hdr\MyList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
