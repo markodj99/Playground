@@ -3,6 +3,7 @@
 #include "MyString.h"
 #include "MyArray.h"
 #include "MyVector.h"
+#include "MyList.h"
 
 void TestString()
 {
@@ -212,4 +213,54 @@ void TestVector()
 	cout << v3 << endl;
 
 	cout << "----------------------------------" << endl;
+}
+
+void TestList()
+{
+	using namespace mystd;
+	using namespace std;
+
+	List<int> l1;
+
+	l1.PushFront(1);
+	l1.PushFront(2);
+	l1.PushFront(3);
+	l1.PushFront(4);
+	l1.PushFront(5);
+	l1.InsertAt(-99, -1);
+	l1.InsertAt(-99, 100);
+	l1.InsertAt(88, 0);
+	l1.InsertAt(88, 7);
+	l1.InsertAt(88, 3);
+	l1.PopFront();
+	l1.PopBack();
+	l1.DeleteAt(2);
+	l1.DeleteAt(-1);
+	l1.DeleteAt(100);
+	l1.DeleteAt(0);
+	l1.DeleteAt(4);
+
+	cout << l1 << endl;
+
+	List<int> l2;
+
+	l2.PushBack(1);
+	l2.PushBack(2);
+	l2.PushBack(3);
+	l2.PushBack(4);
+	l2.PushBack(5);
+	l2.InsertAt(-99, -1);
+	l2.InsertAt(-99, 100);
+	l2.InsertAt(88, 0);
+	l2.InsertAt(88, 7);
+	l2.InsertAt(88, 3);
+	l2.PopFront();
+	l2.PopBack();
+	l2.DeleteAt(2);
+	l2.DeleteAt(-1);
+	l2.DeleteAt(100);
+	l2.DeleteAt(0);
+	l2.DeleteAt(4);
+
+	cout << l2 << endl;
 }
