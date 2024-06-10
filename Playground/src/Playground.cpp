@@ -23,6 +23,8 @@ int main()
 	_CrtMemState sDiff;
 	_CrtMemCheckpoint(&sOld);
 
+	Test();
+
 	_CrtMemCheckpoint(&sNew);
 	if (_CrtMemDifference(&sDiff, &sOld, &sNew))
 	{
