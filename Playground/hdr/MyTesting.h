@@ -87,7 +87,6 @@ void TestString()
 	cout << s4 << endl;
 
 	cout << (s3 != s4 ? "NOT SAME!" : "SAME") << endl;*/
-
 	cout << "----------------------------------" << endl;
 }
 
@@ -211,7 +210,6 @@ void TestVector()
 	v3.PushBack("Marko Car");
 	v3.PushBack("Najveci");
 	cout << v3 << endl;
-
 	cout << "----------------------------------" << endl;
 }
 
@@ -219,6 +217,8 @@ void TestList()
 {
 	using namespace mystd;
 	using namespace std;
+
+	cout << "---------------LIST---------------" << endl;
 
 	List<int> l1;
 
@@ -262,5 +262,68 @@ void TestList()
 	l2.DeleteAt(0);
 	l2.DeleteAt(4);
 
+	List<int>& ref = l2;
+
+	const int* const constFirstt = ref.First();
+	const int* const constLastt = ref.Last();
+	const int* const constFifthh = ref.At(5);
+	const int* const constSecondd = ref.At(1);
+
+	int* firstt = l2.First();
+	int* lastt = l2.Last();
+	int* fifthh = l2.At(5);
+	int* secondd = l2.At(1);
+	*firstt = 1;
+	*lastt = 3;
+	*secondd = 2;
+
 	cout << l2 << endl;
+
+	List<int> l3;
+	int* first = l3.First();
+	int* last = l3.Last();
+	int* fifth = l3.At(5);
+
+	const List<int>& l4 = l3;
+	const int* const constFirst = l4.First();
+	const int* const constLast = l4.Last();
+	const int* const constFifth = l4.At(5);
+
+	l2.Clear();
+	l3.Clear();
+
+	cout << "l2: " << l2 << endl;
+	cout << "l3: " << l3 << endl;
+
+	l2.PushBack(1);
+	l2.PushBack(2);
+	l2.PushBack(3);
+	l2.PushBack(4);
+	l2.PushBack(5);
+
+	l3.PushBack(1);
+	l3.PushBack(2);
+	l3.PushBack(3);
+	l3.PushBack(4);
+	l3.PushBack(5);
+
+	cout << (l2 == l3 ? "SAME" : "NOT SAME") << endl;
+
+	int* fourth = l3.At(3);
+	*fourth = 15;
+
+	cout << (l2 != l3 ? "NOT SAME" : "SAME") << endl;
+
+	cout << "l2: " << l2 << endl;
+	cout << "l3: " << l3 << endl;
+
+	List<String> ls;
+	ls.PushBack("marko");
+	ls.PushBack("loves");
+	ls.PushBack("to");
+	ls.PushBack("play");
+	ls.PushBack("billiard");
+
+	cout << ls << endl;
+	cout << "----------------------------------" << endl;
 }

@@ -11,11 +11,15 @@ int main()
 	_CrtMemState sDiff;
 	_CrtMemCheckpoint(&sOld);
 
-	//TestString();
-	//TestArray();
-	//TestVector();
+	TestString();
+	std::cout << std::endl;
+	TestArray();
+	std::cout << std::endl;
+	TestVector();
+	std::cout << std::endl;
 	TestList();
-	
+	std::cout << std::endl;
+
 	_CrtMemCheckpoint(&sNew);
 	if (_CrtMemDifference(&sDiff, &sOld, &sNew))
 	{

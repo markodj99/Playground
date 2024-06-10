@@ -31,12 +31,12 @@ namespace
 		void PopBack();
 		void DeleteAt(size_t idx);
 
-		T& At(size_t idx);
-		const T& At(size_t idx) const;
-		T& First();
-		const T& First() const;
-		T& Last();
-		const T& Last() const;
+		T* At(size_t idx);
+		const T* const At(size_t idx) const;
+		T* First();
+		const T* const First() const;
+		T* Last();
+		const T* const Last() const;
 
 		void Clear();
 		size_t Size() const;
@@ -44,7 +44,6 @@ namespace
 		List<T>& operator=(const List<T>& other) = delete;
 		List<T>& operator=(List<T>&& other) = delete;
 
-		template<typename T>
 		friend std::ostream& operator<<(std::ostream& out, const List<T>& l)
 		{
 			if (l.size > 0)
@@ -60,26 +59,24 @@ namespace
 			return out;
 		}
 
-		template<typename T>
-		friend bool operator==(const List<T>& first, const List<T>& second);
-		//{
-		//	if (&first == &second) return true;
-		//	if (first.size != second.size) return false;
+		friend bool operator==(const List<T>& first, const List<T>& second)
+		{
+			if (&first == &second) return true;
+			if (first.size != second.size) return false;
 
-		//	struct Element* el1 = first.head;
-		//	Element* el2 = second.head;
-		//	while (el1)
-		//	{
-		//		if (el1->data != el2->data) return false;
+			struct Element* el1 = first.head;
+			Element* el2 = second.head;
+			while (el1)
+			{
+				if (el1->data != el2->data) return false;
 
-		//		el1 = el1->next;
-		//		el2 = el2->next;
-		//	}
+				el1 = el1->next;
+				el2 = el2->next;
+			}
 
-		//	return true;
-		//}
+			return true;
+		}
 
-		template<typename T>
 		friend bool operator!=(const List<T>& first, const List<T>& second)
 		{
 			if (&first == &second) return false;
@@ -99,7 +96,7 @@ namespace
 		}
 	private:
 		void AddFirstElement(const T& value);
-		void DeleteLast();
+		void DeleteLastElement();
 	};
 
 	template<typename T>
@@ -187,7 +184,7 @@ namespace
 
 		if (size == 1)
 		{
-			DeleteLast();
+			DeleteLastElement();
 		}
 		else
 		{
@@ -207,7 +204,7 @@ namespace
 
 		if (size == 1)
 		{
-			DeleteLast();
+			DeleteLastElement();
 		}
 		else
 		{
@@ -223,7 +220,7 @@ namespace
 	template<typename T>
 	void List<T>::DeleteAt(size_t idx)
 	{
-		if (idx < 0 || idx > size) return;
+		if (idx < 0 || idx > size || size == 0) return;
 		if (idx == 0)
 		{
 			PopFront();
@@ -252,40 +249,62 @@ namespace
 	}
 
 	template<typename T>
-	T& List<T>::At(size_t idx)
+	T* List<T>::At(size_t idx)
 	{
+		if (idx < 0 || idx > size || size == 0) return nullptr;
+		if (idx == 0) return &head->data;
+
 		Element* el = head;
 		for (size_t i = 0; i < idx; i++)
 		{
 			el = el->next;
 		}
 
-		return el->data;
+		return &el->data;
 	}
 
 	template<typename T>
-	const T& List<T>::At(size_t idx) const
+	const T* const List<T>::At(size_t idx) const
 	{
+		if (idx < 0 || idx > size || size == 0) return nullptr;
+		if (idx == 0) return &head->data;
+
 		Element* el = head;
 		for (size_t i = 0; i < idx; i++)
 		{
 			el = el->next;
 		}
 
-		return el->data;
+		return &el->data;
 	}
 
 	template<typename T>
-	T& List<T>::First() { return head->data; }
+	T* List<T>::First() 
+	{
+		if (size == 0) return nullptr;
+		return &head->data; 
+	}
 
 	template<typename T>
-	const T& List<T>::First() const { return head->data; }
+	const T* const List<T>::First() const
+	{
+		if (size == 0) return nullptr;
+		return &head->data;
+	}
 
 	template<typename T>
-	T& List<T>::Last() { return tail->data; }
+	T* List<T>::Last() 
+	{
+		if (size == 0) return nullptr;
+		return &tail->data; 
+	}
 
 	template<typename T>
-	const T& List<T>::Last() const { return tail->data; }
+	const T* const List<T>::Last() const 
+	{
+		if (size == 0) return nullptr;
+		return &tail->data;
+	}
 
 	template<typename T>
 	void List<T>::Clear()
@@ -317,30 +336,11 @@ namespace
 	}
 
 	template<typename T>
-	void List<T>::DeleteLast()
+	void List<T>::DeleteLastElement()
 	{
 		delete head;
 		head = nullptr;
 		tail = nullptr;
 		size = 0;
-	}
-
-	template<typename T>
-	bool operator==(const List<T>& first, const List<T>& second)
-	{
-		if (&first == &second) return true;
-		if (first.size != second.size) return false;
-
-		struct Element* el1 = first.head;
-		Element* el2 = second.head;
-		while (el1)
-		{
-			if (el1->data != el2->data) return false;
-
-			el1 = el1->next;
-			el2 = el2->next;
-		}
-
-		return true;
 	}
 }
