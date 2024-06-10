@@ -154,11 +154,11 @@
     <ClCompile Include="src\Playground.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="hdr\MyArray.h" />
-    <ClInclude Include="hdr\MyList.h" />
-    <ClInclude Include="hdr\MyString.h" />
-    <ClInclude Include="hdr\MyVector.h" />
-    <ClInclude Include="hdr\MyTesting.h" />
+    <ClInclude Include="hdr\MyArray.hpp" />
+    <ClInclude Include="hdr\MyList.hpp" />
+    <ClInclude Include="hdr\MyString.hpp" />
+    <ClInclude Include="hdr\MyVector.hpp" />
+    <ClInclude Include="hdr\MyTesting.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

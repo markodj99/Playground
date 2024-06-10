@@ -2,7 +2,7 @@
 #include <crtdbg.h>
 #define _CRTDBG_MAP_ALLOC
 
-#include "MyTesting.h"
+#include "MyTesting.hpp"
 
 int main()
 {

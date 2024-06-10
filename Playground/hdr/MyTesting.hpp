@@ -1,9 +1,9 @@
 #pragma once
 
-#include "MyString.h"
-#include "MyArray.h"
-#include "MyVector.h"
-#include "MyList.h"
+#include "MyString.hpp"
+#include "MyArray.hpp"
+#include "MyVector.hpp"
+#include "MyList.hpp"
 
 void TestString()
 {
