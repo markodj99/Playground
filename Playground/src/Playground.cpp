@@ -4,13 +4,8 @@
 
 #include "MyTesting.hpp"
 
-int main()
+void Test()
 {
-	_CrtMemState sOld;
-	_CrtMemState sNew;
-	_CrtMemState sDiff;
-	_CrtMemCheckpoint(&sOld);
-
 	TestString();
 	std::cout << std::endl;
 	TestArray();
@@ -19,6 +14,14 @@ int main()
 	std::cout << std::endl;
 	TestList();
 	std::cout << std::endl;
+}
+
+int main()
+{
+	_CrtMemState sOld;
+	_CrtMemState sNew;
+	_CrtMemState sDiff;
+	_CrtMemCheckpoint(&sOld);
 
 	_CrtMemCheckpoint(&sNew);
 	if (_CrtMemDifference(&sDiff, &sOld, &sNew))
