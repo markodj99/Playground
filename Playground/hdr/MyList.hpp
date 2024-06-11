@@ -12,7 +12,7 @@ namespace
 			T data;
 			struct Element* next;
 			struct Element* prev;
-		};
+		}typedef Element;
 		Element* head = nullptr;
 		Element* tail = nullptr;
 		size_t size = 0;
@@ -38,62 +38,25 @@ namespace
 		T* Last();
 		const T* const Last() const;
 
+		const Element* GetHead();
+		const Element* const GetHead() const;
+		const Element* GetTail();
+		const Element* const GetTail() const;
+
 		void Clear();
 		size_t Size() const;
 
 		List<T>& operator=(const List<T>& other) = delete;
 		List<T>& operator=(List<T>&& other) = delete;
 
-		friend std::ostream& operator<<(std::ostream& out, const List<T>& l)
-		{
-			if (l.size > 0)
-			{
-				Element* el = l.head;
-				while (el)
-				{
-					out << el->data << " ";
-					el = el->next;
-				}
-			}
+		template<typename T>
+		friend std::ostream& operator<<(std::ostream& out, const List<T>& l);
 
-			return out;
-		}
+		template<typename T>
+		friend bool operator==(const List<T>& first, const List<T>& second);
 
-		friend bool operator==(const List<T>& first, const List<T>& second)
-		{
-			if (&first == &second) return true;
-			if (first.size != second.size) return false;
-
-			struct Element* el1 = first.head;
-			Element* el2 = second.head;
-			while (el1)
-			{
-				if (el1->data != el2->data) return false;
-
-				el1 = el1->next;
-				el2 = el2->next;
-			}
-
-			return true;
-		}
-
-		friend bool operator!=(const List<T>& first, const List<T>& second)
-		{
-			if (&first == &second) return false;
-			if (first.size != second.size) return true;
-
-			Element* el1 = first.head;
-			Element* el2 = second.head;
-			while (el1)
-			{
-				if (el1->data != el2->data) return true;
-
-				el1 = el1->next;
-				el2 = el2->next;
-			}
-
-			return false;
-		}
+		template<typename T>
+		friend bool operator!=(const List<T>& first, const List<T>& second);
 	private:
 		void AddFirstElement(const T& value);
 		void DeleteLastElement();
@@ -307,6 +270,18 @@ namespace
 	}
 
 	template<typename T>
+	const List<T>::Element* List<T>::GetHead() { return head; }
+
+	template<typename T>
+	const List<T>::Element* const List<T>::GetHead() const { return head; }
+
+	template<typename T>
+	const List<T>::Element* List<T>::GetTail() { return tail; }
+
+	template<typename T>
+	const List<T>::Element* const List<T>::GetTail() const { return tail; }
+
+	template<typename T>
 	void List<T>::Clear()
 	{
 		Element* element = head;
@@ -324,6 +299,61 @@ namespace
 	
 	template<typename T>
 	size_t List<T>::Size() const { return size; }
+
+
+	template<typename T>
+	std::ostream& operator<<(std::ostream& out, const List<T>& l)
+	{
+		if (l.size > 0)
+		{
+			struct List<T>::Element* el = l.head;
+			while (el)
+			{
+				out << el->data << " ";
+				el = el->next;
+			}
+		}
+
+		return out;
+	}
+
+	template<typename T>
+	bool operator==(const List<T>& first, const List<T>& second)
+	{
+		if (&first == &second) return true;
+		if (first.size != second.size) return false;
+
+		struct List<T>::Element* el1 = first.head;
+		struct List<T>::Element* el2 = second.head;
+		while (el1)
+		{
+			if (el1->data != el2->data) return false;
+
+			el1 = el1->next;
+			el2 = el2->next;
+		}
+
+		return true;
+	}
+
+	template<typename T>
+	bool operator!=(const List<T>& first, const List<T>& second)
+	{
+		if (&first == &second) return false;
+		if (first.size != second.size) return true;
+
+		struct List<T>::Element* el1 = first.head;
+		struct List<T>::Element* el2 = second.head;
+		while (el1)
+		{
+			if (el1->data != el2->data) return true;
+
+			el1 = el1->next;
+			el2 = el2->next;
+		}
+
+		return false;
+	}
 	
 	template<typename T>
 	void List<T>::AddFirstElement(const T& value)

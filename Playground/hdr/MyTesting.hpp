@@ -325,5 +325,38 @@ void TestList()
 	ls.PushBack("billiard");
 
 	cout << ls << endl;
+
+	auto head = ls.GetHead();
+	for (auto el = head; el != nullptr; el = el->next)
+	{
+		cout << el->data << " ";
+	}
+	cout << endl;
+
+	auto tail = ls.GetTail();
+	for (auto el = tail; el != nullptr; el = el->prev)
+	{
+		cout << el->data << " ";
+	}
+	cout << endl;
+
+	List<String>& refToLs = ls;
+
+	auto constHead = refToLs.GetHead();
+	for (auto el = constHead; el != nullptr; el = el->next)
+	{
+		cout << el->data << " ";
+	}
+	cout << endl;
+
+	auto constTail = refToLs.GetTail();
+	for (auto el = constTail; el != nullptr; el = el->prev)
+	{
+		cout << el->data << " ";
+	}
+	cout << endl;
+
+
+
 	cout << "----------------------------------" << endl;
 }
