@@ -38,5 +38,8 @@
     <ClInclude Include="hdr\MyScopetPtr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="hdr\MyTimer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

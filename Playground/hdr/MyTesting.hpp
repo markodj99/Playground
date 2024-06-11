@@ -5,8 +5,10 @@
 #include "MyVector.hpp"
 #include "MyList.hpp"
 #include "MyScopetPtr.hpp"
+#include "MyTimer.hpp"
 
 #include <string>
+#include <cmath>
 
 void TestString()
 {
@@ -366,7 +368,6 @@ void TestScopedPtr()
 	using namespace std;
 
 	cout << "------------SCOPERDPTR-------------" << endl;
-
 	ScopedPtr<String> sp;
 	sp = new String("test");
     sp->operator[](3) = 'T';
@@ -402,4 +403,53 @@ void TestScopedPtr()
 	cout << stdString << endl;
 
 	cout << "-----------------------------------" << endl;
+}
+
+void TestTimer()
+{
+	using namespace mystd;
+	using namespace std;
+
+	cout << "---------------TIMER---------------" << endl;
+
+	{
+		Timer t("TIMER_1");
+		Vector<String> v;
+		for (size_t i = 0; i < 10000000; i++)
+		{
+			v.PushBack(to_string(sqrt(i) * pow(i, 1 / 3)).c_str());
+		}
+	}
+	{
+		Timer t("TIMER_2");
+		Vector<String> v(10000000);
+		for (size_t i = 0; i < 10000000; i++)
+		{
+			v.PushBack(to_string(i * 2).c_str());
+		}
+	}
+	cout << "-----------------------------------" << endl;
+}
+
+void Test()
+{
+	using namespace std;
+
+	TestString();
+	cout << endl;
+
+	TestArray();
+	cout << endl;
+
+	TestVector();
+	cout << endl;
+
+	TestList();
+	cout << endl;
+
+	TestScopedPtr();
+	cout << endl;
+
+	TestTimer();
+	cout << endl;
 }
