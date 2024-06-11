@@ -12,7 +12,7 @@ namespace
 			T data;
 			struct Element* next;
 			struct Element* prev;
-		}typedef Element;
+		};
 		Element* head = nullptr;
 		Element* tail = nullptr;
 		size_t size = 0;
