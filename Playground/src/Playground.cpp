@@ -3,6 +3,7 @@
 #define _CRTDBG_MAP_ALLOC
 
 #include "MyTesting.hpp"
+#include <memory>
 
 void Test()
 {
@@ -13,6 +14,8 @@ void Test()
 	TestVector();
 	std::cout << std::endl;
 	TestList();
+	std::cout << std::endl;
+	TestScopedPtr();
 	std::cout << std::endl;
 }
 

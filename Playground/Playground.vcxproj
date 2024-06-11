@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="hdr\MyArray.hpp" />
     <ClInclude Include="hdr\MyList.hpp" />
+    <ClInclude Include="hdr\MyScopetPtr.hpp" />
     <ClInclude Include="hdr\MyString.hpp" />
     <ClInclude Include="hdr\MyVector.hpp" />
     <ClInclude Include="hdr\MyTesting.hpp" />

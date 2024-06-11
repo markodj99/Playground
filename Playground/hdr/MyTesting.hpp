@@ -4,6 +4,9 @@
 #include "MyArray.hpp"
 #include "MyVector.hpp"
 #include "MyList.hpp"
+#include "MyScopetPtr.hpp"
+
+#include <string>
 
 void TestString()
 {
@@ -219,7 +222,6 @@ void TestList()
 	using namespace std;
 
 	cout << "---------------LIST---------------" << endl;
-
 	List<int> l1;
 
 	l1.PushFront(1);
@@ -355,8 +357,49 @@ void TestList()
 		cout << el->data << " ";
 	}
 	cout << endl;
-
-
-
 	cout << "----------------------------------" << endl;
+}
+
+void TestScopedPtr()
+{
+	using namespace mystd;
+	using namespace std;
+
+	cout << "------------SCOPERDPTR-------------" << endl;
+
+	ScopedPtr<String> sp;
+	sp = new String("test");
+    sp->operator[](3) = 'T';
+	cout << sp << endl;
+
+	ScopedPtr<int> sp1 = new int;
+
+	int* ptr = sp1.Get();
+	*ptr = 5;
+	cout << sp1 << endl;
+
+	ScopedPtr<int>& ref = sp1;
+	auto ptrRef = ref.Get();
+	*ptrRef = 0;
+	cout << sp1 << endl;
+	*sp1 = 15;
+	cout << sp1 << endl;
+
+	if (sp1)
+	{
+		cout << "if " << sp1 << endl;
+	}
+
+	ScopedPtr<String> sp2 = new String("Marko Marko");
+	cout << sp2 << endl;
+	cout << "size: " << sp2->Size() << endl;
+	(*sp2)[1] = 'A';
+	cout << sp2 << endl;
+
+	ScopedPtr<string> stdString = new string("marko");
+	cout << stdString << endl;
+	stdString->operator[](1) = 'A';
+	cout << stdString << endl;
+
+	cout << "-----------------------------------" << endl;
 }
